@@ -1,52 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel = "stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
-</head>
+{% extends 'base.html' %}
 
+{% block head %} {% endblock %}
+{% block body %}
+    {% include 'header_band.html' %}
 
-<body>
-    <div id="header_band">
-        <h1>  PEPE VISION  </h1>
-
-        <form id="loggin_form">
-            <h4 id = "loggin_header">Log into your account</h4>
-            <div>
-                <input name = "username" type ="text" placeholder="enter your username ..">
-                <input name = "password" type = "text" placeholder="enter your password" >
-            </div>
-
-            <input name = "log in" type = "submit">
-        </form>
-
-    </div>
-
-    <div id="search bar">
-        <input id = "query field" type = "text"> </input>
-        <button onclick=search()> search </button>
-    </div>
-    <div class = 'content_box'>
+    <div class ="center-wrapper">
+    <div class = 'main-media-box'>
 
         <h3 class="vid-titles" id="current-vid-title">{{vid_title}}</h3>
-        <div class ="vid-container" id = "active-video"></div>
+        
+        <div class ="media-wrapper" id = "main-media">
+            <img src="https://avatars.mds.yandex.net/i?id=e168d594d0df797c47e7f556759f75f3-6217553-images-thumbs&n=13" height="650" width="1000">
+        </div>
 
-        <form id="direct-search-form" >
+        <form id="direct-search-form" class="center-wrapper" >
             <input type="text", placeholder="enter url" id="direct_search_input">
-            <input type="submit" accesskey="z"></button>
+            <input type="submit" value="Direct lookup">
         </form>
 
     </div>
-
-    <video id="test-video" width="320" height="240" controls>
-        <source src="" type="video/mp4">
-        <source src="" type="video/ogg">
-      Your browser does not support the video tag.
-    </video> 
+    </div>
+{% endblock %}
     
-    <script src ="{{ url_for('static',filename = 'script.js') }}"> </script>
-</body>
-</html>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %} {% endblock %}
+
+{% block body %}
+    {% include 'header_band.html' %}
+    <div class = 'main-media-box'>
+
+        <h1 class="stream-title" id="current-vid-title">{{stream_title}}</h1>
+
+            <video id="main-video" height="700" poster='{{meta.thumbnail.url}}' controls autoplay muted>
+                <source src="{{streaming_url}}" type="video/mp4">
+                <source src="{{streaming_url}}" type="video/ogg">
+                video format not supported by your browser
+            </video>`
+            
+        <h4>Déscription:</h4>
+        <p id="description">{{description}}</p>
+
+    </div>
+    <script>
+        document.getElementById("main-video").focus()
+     </script>
+{% endblock %}

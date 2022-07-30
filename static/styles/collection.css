@@ -1,0 +1,15 @@
+#collection-content-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px,365px));
+    margin-top: 20px;
+
+}
+
+.stream-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+    background: antiquewhite;
+}

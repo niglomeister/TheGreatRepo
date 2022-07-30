@@ -1,0 +1,61 @@
+{% extends 'base.html'%}
+
+
+{% block body %}
+{% include 'header_band.html' %}
+{% for result in search_results%}
+<div class="search-result-box">
+  <h1 class="stream-title">{{result.name}}</h1>
+  <div class="left-wrapper">
+
+    <a href="{{url_for('stream', url=result.name )}}" class="result-link">
+      <div class="search-result-thumbnail-wrapper">issou</div>
+    </a>
+
+    <div class="info-box">
+      <div class="result-description"></div>
+    </div>
+
+  </div>
+  <h4>claim id: {{result.claimId}}</h4>
+  {% if result.type == 'channel'%}
+    <h3>Channel</h3>
+  {% endif %}
+</div>
+{% endfor%}
+
+<script> //request video titles and thumbnails to the server
+    const search_results = JSON.parse('{{search_results | tojson | safe}}')
+    fetch("api/results_thumbnails", { method: "post", headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(search_results)}).then(response => response.json()).then(response => { 
+
+    wrappers = document.getElementsByClassName("search-result-thumbnail-wrapper");
+    title_headers = document.getElementsByClassName("stream-title");
+    descriptions = document.getElementsByClassName("result-description");
+    links = document.getElementsByClassName("result-link");
+    info_boxes = document.getElementsByClassName("info-box");
+
+    for (let i = 0; i<wrappers.length; i++ ){
+
+      let wrapper = wrappers[i];
+      wrapper.innerHTML = `<img src=${response.urls[i]} class="thumbnail">` ;
+
+      let header = title_headers[i];
+      header.innerHTML = response.titles[i] + `  [${response.type[i]}]`;
+
+      let description = descriptions[i];
+      description.innerHTML = response.descriptions[i];
+
+      let link = links[i];
+      link.setAttribute("href",link.getAttribute("href").replace("stream",response.type[i]))
+      
+    }
+  })
+  
+</script>
+
+{% endblock %}
+

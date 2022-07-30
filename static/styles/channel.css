@@ -1,0 +1,40 @@
+#channel-header {
+    display: grid;
+    grid-template-areas: 
+    "thumbnail title"
+    "thumbnail description";
+    grid-template-rows: 20px 100px;
+    grid-template-columns: 120px auto;
+    align-items: center;
+    column-gap: 20px;
+}
+
+#channel-title {
+    grid-area: title;
+}
+
+#channel-thumbnail {
+    grid-area: thumbnail;
+}
+
+#channel-description {
+    grid-area: description;
+    overflow:hidden;
+}
+
+#channel-content-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px,365px));
+    margin-top: 20px;
+
+}
+
+.stream-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+    background: antiquewhite;
+}
+

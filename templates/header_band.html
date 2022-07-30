@@ -1,0 +1,23 @@
+
+<div id="header-band">
+    <a href="/"><h1 id="logo" herf="{{ url_for('results') }}">  PEPE VISION  </h1></a>
+
+    <div  id="search-bar-wrapper">
+        <form id="search-bar" action="/results">
+            <input name="query" id = "query-field" type = "text" style="flex:10;" autofocus> </input>
+            <input type="submit" style="flex:1;" value="search"> </button>
+        </form>
+        
+    </div>
+    
+    <form id="loggin-form">
+        <h4 id = "loggin_header">Log into your account</h4>
+
+        <div>
+            <input name = "username" type ="text" placeholder="enter your username ..">
+            <input name = "password" type = "text" placeholder="enter your password" >
+        </div>
+
+        <input name = "log in" type = "submit" value="send">
+    </form>
+</div>

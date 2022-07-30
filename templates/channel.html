@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head%} 
+<link rel = "stylesheet" href="{{ url_for('static', filename = 'styles/channel.css') }}">
+{% endblock %}
+
+{% block body%}
+    {% include 'header_band.html' %}
+
+    <div id="channel-header" >
+        <img class="thumbnail" id="channel-thumbnail" src={{channel_thumbnail}}>
+        <h2 id="channel-title" >{{channel_name}}</h2>
+        <p id="channel-description">{{channel.value.description}}</p>
+    </div>
+
+    <div id="channel-content-grid">
+        {% if claims%}
+            {% for claim in claims %}
+                <div class="stream-card">
+
+                    <h3 class="stream-title">{{claim.value.title}}</h3>
+
+                    <div class="media-wrapper">
+                        <a href="{{url_for('stream',url=claim.name)}}">
+                            <img src="{{claim.value.thumbnail.url}}" class="thumbnail">
+                        </a>
+                    </div>
+
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="center-wrapper" style="width: 100vw">
+                <h1>Sorry this channel has no claims</h1>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="center-wrapper" id="page-selection">
+    {% for i in range(1,n_pages+1) %}
+        {% if i != current_page %}
+            <a href="{{url_for('channel', url=url, page=i)}}">{{i}}</a>
+        {% else %}
+            <span>{{i}}</span>
+        {% endif %}
+    {% endfor %}
+    </div>
+
+{% endblock %}

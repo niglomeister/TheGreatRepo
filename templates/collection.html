@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block head%} 
+<link rel = "stylesheet" href="{{ url_for('static', filename = 'styles/collection.css') }}">
+{% endblock %}
+
+{% block body%}
+    {% include 'header_band.html' %}
+    <div id="collection-content-grid">
+        {% if claims%}
+            {% for claim in claims %}
+                <div class="stream-card">
+
+                    <h3 class="stream-title">{{claim.value.title}}</h3>
+
+                    <div class="media-wrapper">
+                        <a href="{{url_for('stream',url=claim.name)}}">
+                            <img src="{{claim.value.thumbnail.url}}" class="thumbnail">
+                        </a>
+                    </div>
+
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="center-wrapper" style="width: 100vw">
+                <h1>Sorry this channel has no claims</h1>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
